@@ -5,9 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AuroraScrape - Automação e Inteligência de Dados</title>
     
+    <!-- SEO IMPROVEMENTS -->
+    <meta name="description" content="AuroraScrape oferece soluções de automação e inteligência de dados, criando crawlers personalizados, RPA, BI e consultoria em TI para impulsionar seu negócio.">
+    <meta name="keywords" content="AuroraScrape, automação, RPA, web scraping, crawlers, inteligência de dados, consultoria TI, extração de dados, Power BI, inteligência artificial">
+    <link rel="canonical" href="https://www.aurorascrape.com/">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="AuroraScrape - Automação e Inteligência de Dados">
+    <meta property="og:description" content="Navegando a aurora digital para extrair dados e impulsionar o seu negócio com automação inteligente.">
+    <meta property="og:image" content="https://www.aurorascrape.com/og-image.jpg"> <!-- Replace with a relevant image for social sharing -->
+    <meta property="og:url" content="https://www.aurorascrape.com/">
+    <meta property="og:type" content="website">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
         /* CSS RESET & GENERAL STYLING */
@@ -53,6 +67,69 @@
         .lang-switcher button { background: none; border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer; transition: background-color 0.3s, color 0.3s; }
         .lang-switcher button:hover, .lang-switcher button.active { background-color: var(--accent-cyan); color: var(--dark-blue); }
 
+        /* HAMBURGER MENU */
+        .hamburger {
+            display: none; /* Hidden by default, shown on mobile */
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-cyan);
+            border-radius: 3px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hamburger active state */
+        .hamburger.active span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+        /* Media query for mobile navigation */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hide desktop nav */
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -100%; /* Start off-screen */
+                width: 70%;
+                height: 100vh;
+                background-color: var(--light-blue);
+                padding-top: 5rem;
+                transition: right 0.3s ease-in-out;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+                align-items: flex-start;
+                gap: 2rem;
+            }
+            .nav-links.active {
+                display: flex; /* Show mobile nav */
+                right: 0; /* Slide in */
+            }
+            .nav-links a, .lang-switcher {
+                width: 100%;
+                padding: 0.5rem 2rem;
+                text-align: left;
+            }
+            .lang-switcher {
+                display: flex;
+                justify-content: flex-start;
+                gap: 1rem;
+            }
+            .hamburger {
+                display: flex; /* Show hamburger */
+            }
+        }
+
         /* HERO SECTION */
         #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: left; padding-top: 80px; background-size: cover; background-position: center center; transition: background-image 1s ease-in-out; }
         .hero-content { max-width: 800px; }
@@ -61,7 +138,7 @@
         .hero-content p { font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; }
 
         /* SERVICES SECTION */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
         .service-card { background-color: var(--light-blue); padding: 2rem; border-radius: 8px; border-left: 4px solid var(--accent-cyan); transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .service-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
         .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
@@ -77,22 +154,17 @@
             margin-top: 3rem;
         }
         .client-logo {
-            /* NEW: Set a fixed container size for uniformity */
             width: 150px; 
-            height: 80px; /* A good standard height for logos. Adjust if needed. */
-
-            /* Center the image content inside this box */
+            height: 80px;
             display: flex;
             justify-content: center;
             align-items: center;
-
-            /* Center the box itself within the grid cell */
             margin: 0 auto;
         }
         .client-logo img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* This is the key property */
+            object-fit: contain;
             filter: grayscale(100%) brightness(1.5);
             opacity: 0.7;
             transition: filter 0.3s ease, opacity 0.3s ease;
@@ -102,6 +174,59 @@
             opacity: 1;
         }
         
+        /* VALUES SECTION */
+        #values { padding: 6rem 0; }
+        #values h2 { margin-bottom: 3rem; }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .value-card {
+            background-color: var(--light-blue);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-cyan);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .value-card i {
+            font-size: 2.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+        .value-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+        .value-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .purpose-statement {
+            background-color: var(--lightest-blue);
+            padding: 2.5rem;
+            border-radius: 8px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid var(--accent-cyan);
+        }
+        .purpose-statement h3 {
+            font-size: 1.8rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+        .purpose-statement p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
         /* TESTIMONIALS SECTION */
         .testimonial-card {
             background-color: var(--light-blue);
@@ -152,7 +277,21 @@
 
         /* FOOTER */
         footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--lightest-blue); }
-        footer p { color: var(--text-secondary); }
+        footer p { color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .footer-company-info {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            line-height: 1.8;
+        }
+        .footer-company-info strong {
+            color: var(--text-light);
+        }
+        .footer-company-info br { /* For spacing in company details */
+            content: "";
+            display: block;
+            margin-top: 0.5em;
+        }
 
     </style>
 </head>
@@ -163,7 +302,8 @@
             <a href="#hero" class="logo">Aurora<span>Scrape</span></a>
             <nav class="nav-links">
                 <a href="#services" data-key="nav_services">Serviços</a>
-                <a href="#clients" data-key="nav_clients">Clientes</a> <!-- NEW LINK -->
+                <a href="#clients" data-key="nav_clients">Clientes</a>
+                <a href="#values" data-key="nav_values">Valores</a>
                 <a href="#about" data-key="nav_about">Filosofia</a>
                 <a href="#contact" data-key="nav_contact">Contato</a>
                 <div class="lang-switcher">
@@ -171,6 +311,11 @@
                     <button id="lang-en">EN</button>
                 </div>
             </nav>
+            <button class="hamburger" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
@@ -185,10 +330,12 @@
             </div>
         </section>
 
+        <!-- UPDATED SERVICES SECTION WITH 6 SERVICES -->
         <section id="services">
             <div class="container">
                 <h2 class="fade-in" data-key="services_title">Nossas Soluções</h2>
                 <div class="services-grid">
+                    <!-- Original 3 Services -->
                     <div class="service-card fade-in">
                         <h3 data-key="service1_title">Criação de Crawlers</h3>
                         <p data-key="service1_desc">Desenvolvemos robôs sob medida para coletar dados da web de forma precisa, ética e eficiente, transformando a internet em sua fonte de inteligência.</p>
@@ -201,28 +348,69 @@
                         <h3 data-key="service3_title">Consultoria em TI</h3>
                         <p data-key="service3_desc">Oferecemos soluções estratégicas em tecnologia para otimizar sua infraestrutura, segurança e processos, alinhando a TI aos seus objetivos de negócio.</p>
                     </div>
+                    
+                    <!-- New 3 Services -->
+                    <div class="service-card fade-in">
+                        <h3 data-key="service4_title">Dashboards e BI</h3>
+                        <p data-key="service4_desc">Transformamos dados brutos em painéis interativos (Power BI, Tableau) para visualização clara de tendências e tomada de decisão estratégica.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <h3 data-key="service5_title">Análise com IA e NLP</h3>
+                        <p data-key="service5_desc">Utilizamos Inteligência Artificial para interpretar textos, analisar sentimentos e categorizar grandes volumes de dados automaticamente.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <h3 data-key="service6_title">Integração de APIs</h3>
+                        <p data-key="service6_desc">Conectamos seus crawlers e dados diretamente ao seu CRM, ERP ou banco de dados, eliminando processos manuais de importação.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- =============================================================== -->
-        <!-- NEW CLIENTS SECTION - VISIBLE BY DEFAULT                      -->
-        <!-- =============================================================== -->
         <section id="clients">
             <div class="container">
                 <h2 class="fade-in" data-key="clients_title">Quem Confia na AuroraScrape</h2>
                 <div class="clients-grid fade-in">
                     <!-- INSTRUCTIONS: Replace these placeholders with your client logos. -->
-                    <!-- For best results, use PNGs with transparent backgrounds, around 150px wide. -->
                     <!-- <div class="client-logo">
-                        <img src="" alt="Logo Cliente B">
-                    </div>
-                    <div class="client-logo">
-                        <img src="" alt="Logo Cliente C">
-                    </div>
-                    <div class="client-logo">
-                        <img src="" alt="Logo Cliente D">
+                        <img src="./sources/client-logos/client-a.png" alt="Logo Cliente A">
                     </div> -->
+                </div>
+            </div>
+        </section>
+
+        <section id="values">
+            <div class="container">
+                <h2 class="fade-in" data-key="values_title">Nossos Valores</h2>
+                <div class="values-grid">
+                    <div class="value-card fade-in">
+                        <i class="fas fa-handshake"></i>
+                        <h3 data-key="value1_title">Foco no Cliente</h3>
+                        <p data-key="value1_desc">Nós nos dedicamos a entender e superar as expectativas dos nossos clientes, construindo parcerias duradouras.</p>
+                    </div>
+                    <div class="value-card fade-in">
+                        <i class="fas fa-users"></i>
+                        <h3 data-key="value2_title">Colaboração</h3>
+                        <p data-key="value2_desc">Trabalhamos juntos, compartilhando conhecimento e expertise para alcançar resultados superiores como um só time.</p>
+                    </div>
+                    <div class="value-card fade-in">
+                        <i class="fas fa-check-double"></i>
+                        <h3 data-key="value3_title">Responsabilidade</h3>
+                        <p data-key="value3_desc">Assumimos a responsabilidade por nossas ações e resultados, buscando a excelência em tudo o que fazemos.</p>
+                    </div>
+                    <div class="value-card fade-in">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3 data-key="value4_title">Inovação e Diversidade</h3>
+                        <p data-key="value4_desc">Celebramos a diversidade de ideias e perspectivas para impulsionar a criatividade e a inovação em nossas soluções.</p>
+                    </div>
+                    <div class="value-card fade-in">
+                        <i class="fas fa-shield"></i>
+                        <h3 data-key="value5_title">Integridade</h3>
+                        <p data-key="value5_desc">Agimos com honestidade, transparência e ética, construindo confiança em todas as nossas interações.</p>
+                    </div>
+                </div>
+                <div class="purpose-statement fade-in">
+                    <h3 data-key="purpose_title">Nosso Propósito</h3>
+                    <p data-key="purpose_desc">Ajudar nossos clientes a prosperar no mundo digital.</p>
                 </div>
             </div>
         </section>
@@ -231,7 +419,6 @@
             <div class="container">
                 <h2 class="fade-in" data-key="testimonials_title">O Que Nossos Clientes Dizem</h2>
                 <div class="testimonial-card fade-in">
-                    <!-- INSTRUCTIONS: Edit the text below to add your first testimonial. -->
                     <p class="quote" data-key="testimonial1_quote">"A AuroraScrape transformou nossa maneira de coletar e analisar dados. A automação que eles implementaram nos economizou centenas de horas e nos deu insights que nunca teríamos encontrado sozinhos."</p>
                     <div class="author">
                         <strong data-key="testimonial1_author">Nome do Cliente</strong>
@@ -255,7 +442,6 @@
                 <div class="contact-content fade-in">
                     <h2 data-key="contact_title">Vamos Conversar?</h2>
                     <p data-key="contact_desc">Pronto para transformar dados em resultados e automatizar seu sucesso? Entre em contato e vamos construir o futuro juntos.</p>
-                    <!-- NEW: The href is removed and an ID is added. JS will build the link. -->
                     <a id="contact-link" class="cta-button" data-key="contact_button">Entre em Contato</a>
                 </div>
             </div>
@@ -264,12 +450,53 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 AuroraScrape. <span data-key="footer_rights">Todos os direitos reservados.</span></p>
+            <p>&copy; <span id="current-year"></span> AuroraScrape. <span data-key="footer_rights">Todos os direitos reservados.</span></p>
+            <div class="footer-company-info">
+                <p data-key="company_name"><strong>Nome Empresarial:</strong> ABEIL COELHO JUNIOR LTDA</p>
+                <p data-key="trade_name"><strong>Nome de Fantasia:</strong> AURORA SCRAPE</p>
+                <p data-key="address">
+                    <span data-key="address_street">R PAIS LEME, 215, Conj 1713</span><br>
+                    <span data-key="address_city_state">PINHEIROS, SAO PAULO - SP</span><br>
+                    <span data-key="address_cep">CEP: 05.424-150</span>
+                </p>
+                <p data-key="cnpj"><strong>CNPJ:</strong> 61.800.590/0001-21</p>
+            </div>
         </div>
     </footer>
 
     <script>
         let currentLang = 'pt';
+
+        // Full data objects
+        const weekdayGreetings = {
+            'pt': [
+                "Um ótimo Domingo para planejar a semana!",
+                "Uma Segunda-feira produtiva para você!",
+                "Tenha uma Terça-feira cheia de insights!",
+                "Quarta-feira é dia de inovar. Vamos lá!",
+                "Uma Quinta-feira de grandes avanços!",
+                "Sextou! Hora de colher os dados da semana!",
+                "Um Sábado tranquilo para analisar e crescer!"
+            ],
+            'en': [
+                "A great Sunday to plan the week!",
+                "Have a productive Monday!",
+                "Wishing you a Tuesday full of insights!",
+                "Wednesday is innovation day. Let's go!",
+                "A Thursday of great progress!",
+                "It's Friday! Time to harvest the week's data!",
+                "A peaceful Saturday to analyze and grow!"
+            ]
+        };
+        const weekdayImages = [
+            './sources/background/photo-1506318137071-a8e063b4bec0.avif', 
+            './sources/background/photo-1534723328310-e82dad3ee43f.avif', 
+            './sources/background/photo-1526374965328-7f61d4dc18c5.avif', 
+            './sources/background/photo-1531366936337-7c912a4589a7.avif', 
+            './sources/background/photo-1561821636-54d40db2a9ce.avif', 
+            './sources/background/photo-1507697364665-69eec30ea71e.avif', 
+            './sources/background/photo-1464802686167-b939a6910659.avif'  
+        ];
 
         function changeDay(dayNumber) {
             if (typeof dayNumber !== 'number' || dayNumber < 0 || dayNumber > 6) {
@@ -289,42 +516,81 @@
 
             console.log(`Previewing site for day: ${dayNumber}.`);
         }
+
         document.addEventListener('DOMContentLoaded', function() {
             // Dictionaries & Data
             const translations = {
                 'pt': {
-                    'nav_services': 'Serviços', 'nav_clients': 'Clientes', 'nav_about': 'Filosofia', 'nav_contact': 'Contato',
+                    'nav_services': 'Serviços', 'nav_clients': 'Clientes', 'nav_values': 'Valores', 'nav_about': 'Filosofia', 'nav_contact': 'Contato',
                     'hero_subtitle': 'Navegando a aurora digital para extrair dados e impulsionar o seu negócio com automação inteligente.',
+                    
                     'services_title': 'Nossas Soluções',
                     'service1_title': 'Criação de Crawlers', 'service1_desc': 'Desenvolvemos robôs sob medida para coletar dados da web de forma precisa, ética e eficiente, transformando a internet em sua fonte de inteligência.',
                     'service2_title': 'Automação e RPA', 'service2_desc': 'Implementamos RPA (Robotic Process Automation) para automatizar tarefas repetitivas, aumentar a produtividade e reduzir erros operacionais.',
                     'service3_title': 'Consultoria em TI', 'service3_desc': 'Oferecemos soluções estratégicas em tecnologia para otimizar sua infraestrutura, segurança e processos, alinhando a TI aos seus objetivos de negócio.',
-                    'clients_title': 'Quem Confia na AuroraScrape', // NEW
-                    'testimonials_title': 'O Que Nossos Clientes Dizem', // NEW
-                    'testimonial1_quote': '"A AuroraScrape transformou nossa maneira de coletar e analisar dados. A automação que eles implementaram nos economizou centenas de horas e nos deu insights que nunca teríamos encontrado sozinhos."', // NEW
-                    'testimonial1_author': 'Nome do Cliente', // NEW
-                    'testimonial1_role': 'CEO, Nome da Empresa', // NEW
+                    // NEW SERVICES PT
+                    'service4_title': 'Dashboards e BI', 'service4_desc': 'Transformamos dados brutos em painéis interativos (Power BI, Tableau) para visualização clara de tendências e tomada de decisão estratégica.',
+                    'service5_title': 'Análise com IA e NLP', 'service5_desc': 'Utilizamos Inteligência Artificial para interpretar textos, analisar sentimentos e categorizar grandes volumes de dados automaticamente.',
+                    'service6_title': 'Integração de APIs', 'service6_desc': 'Conectamos seus crawlers e dados diretamente ao seu CRM, ERP ou banco de dados, eliminando processos manuais de importação.',
+
+                    'clients_title': 'Quem Confia na AuroraScrape',
+                    'values_title': 'Nossos Valores', 
+                    'value1_title': 'Foco no Cliente', 'value1_desc': 'Nós nos dedicamos a entender e superar as expectativas dos nossos clientes, construindo parcerias duradouras.',
+                    'value2_title': 'Colaboração', 'value2_desc': 'Trabalhamos juntos, compartilhando conhecimento e expertise para alcançar resultados superiores como um só time.', 
+                    'value3_title': 'Responsabilidade', 'value3_desc': 'Assumimos a responsabilidade por nossas ações e resultados, buscando a excelência em tudo o que fazemos.', 
+                    'value4_title': 'Inovação e Diversidade', 'value4_desc': 'Celebramos a diversidade de ideias e perspectivas para impulsionar a criatividade e a inovação em nossas soluções.', 
+                    'value5_title': 'Integridade', 'value5_desc': 'Agimos com honestidade, transparência e ética, construindo confiança em todas as nossas interações.', 
+                    'purpose_title': 'Nosso Propósito', 'purpose_desc': 'Ajudar nossos clientes a prosperar no mundo digital.', 
+                    'testimonials_title': 'O Que Nossos Clientes Dizem',
+                    'testimonial1_quote': '"A AuroraScrape transformou nossa maneira de coletar e analisar dados. A automação que eles implementaram nos economizou centenas de horas e nos deu insights que nunca teríamos encontrado sozinhos."',
+                    'testimonial1_author': 'Nome do Cliente',
+                    'testimonial1_role': 'CEO, Nome da Empresa',
                     'about_title': 'Nossa Filosofia: A Aurora Digital',
                     'about_desc': 'Imaginamos a web como uma vasta e deslumbrante <strong>aurora boreal</strong>, um fluxo constante de dados, cores e oportunidades. Na <strong>AuroraScrape</strong>, nossa missão é "raspar" essa aurora, capturando a luz da informação para transformar dados brutos em insights poderosos e decisões estratégicas para nossos clientes.',
                     'contact_title': 'Vamos Conversar?', 'contact_desc': 'Pronto para transformar dados em resultados e automatizar seu sucesso? Entre em contato e vamos construir o futuro juntos.',
-                    'contact_button': 'Entre em Contato', 'footer_rights': 'Todos os direitos reservados.'
+                    'contact_button': 'Entre em Contato', 'footer_rights': 'Todos os direitos reservados.',
+                    'company_name': '<strong>Nome Empresarial:</strong> ABEIL COELHO JUNIOR LTDA', 
+                    'trade_name': '<strong>Nome de Fantasia:</strong> AURORA SCRAPE', 
+                    'address_street': 'R PAIS LEME, 215, Conj 1713', 
+                    'address_city_state': 'PINHEIROS, SAO PAULO - SP', 
+                    'address_cep': 'CEP: 05.424-150', 
+                    'cnpj': '<strong>CNPJ:</strong> 61.800.590/0001-21' 
                 },
                 'en': {
-                    'nav_services': 'Services', 'nav_clients': 'Clients', 'nav_about': 'Philosophy', 'nav_contact': 'Contact',
+                    'nav_services': 'Services', 'nav_clients': 'Clients', 'nav_values': 'Values', 'nav_about': 'Philosophy', 'nav_contact': 'Contact',
                     'hero_subtitle': 'Navigating the digital aurora to extract data and boost your business with intelligent automation.',
+                    
                     'services_title': 'Our Solutions',
                     'service1_title': 'Crawler Creation', 'service1_desc': 'We develop custom bots to collect web data accurately, ethically, and efficiently, turning the internet into your source of intelligence.',
                     'service2_title': 'Automation & RPA', 'service2_desc': 'We implement RPA (Robotic Process Automation) to automate repetitive tasks, increase productivity, and reduce operational errors.',
                     'service3_title': 'IT Consultancy', 'service3_desc': 'We offer strategic technology solutions to optimize your infrastructure, security, and processes, aligning IT with your business goals.',
-                    'clients_title': 'Trusted By', // NEW
-                    'testimonials_title': 'What Our Clients Say', // NEW
-                    'testimonial1_quote': '"AuroraScrape transformed how we collect and analyze data. The automation they implemented saved us hundreds of hours and gave us insights we would have never found on our own."', // NEW
-                    'testimonial1_author': 'Client Name', // NEW
-                    'testimonial1_role': 'CEO, Company Name', // NEW
+                    // NEW SERVICES EN
+                    'service4_title': 'Business Intelligence', 'service4_desc': 'We turn raw data into interactive dashboards (Power BI, Tableau) for clear visualization of trends and strategic decision-making.',
+                    'service5_title': 'AI & NLP Analysis', 'service5_desc': 'We use Artificial Intelligence to interpret text, analyze sentiment, and categorize large volumes of data automatically.',
+                    'service6_title': 'API Integrations', 'service6_desc': 'We connect your crawlers and data directly to your CRM, ERP, or database, eliminating manual import processes.',
+
+                    'clients_title': 'Trusted By',
+                    'values_title': 'Our Values', 
+                    'value1_title': 'Client Focus', 'value1_desc': 'We are dedicated to understanding and exceeding our clients\' expectations, building lasting partnerships.', 
+                    'value2_title': 'Collaboration', 'value2_desc': 'We work together, sharing knowledge and expertise to achieve superior results as one team.', 
+                    'value3_title': 'Accountability', 'value3_desc': 'We take responsibility for our actions and results, striving for excellence in everything we do.', 
+                    'value4_title': 'Innovation & Diversity', 'value4_desc': 'We celebrate diversity of ideas and perspectives to drive creativity and innovation in our solutions.', 
+                    'value5_title': 'Integrity', 'value5_desc': 'We act with honesty, transparency, and ethics, building trust in all our interactions.', 
+                    'purpose_title': 'Our Purpose', 'purpose_desc': 'Helping our clients thrive in the digital world.', 
+                    'testimonials_title': 'What Our Clients Say',
+                    'testimonial1_quote': '"AuroraScrape transformed how we collect and analyze data. The automation they implemented saved us hundreds of hours and gave us insights we would have never found on our own."',
+                    'testimonial1_author': 'Client Name',
+                    'testimonial1_role': 'CEO, Company Name',
                     'about_title': 'Our Philosophy: The Digital Aurora',
                     'about_desc': 'We envision the web as a vast and stunning <strong>aurora borealis</strong>, a constant flow of data, colors, and opportunities. At <strong>AuroraScrape</strong>, our mission is to "scrape" this aurora, capturing the light of information to turn raw data into powerful insights and strategic decisions for our clients.',
                     'contact_title': 'Let\'s Talk?', 'contact_desc': 'Ready to turn data into results and automate your success? Get in touch and let\'s build the future together.',
-                    'contact_button': 'Get in Touch', 'footer_rights': 'All rights reserved.'
+                    'contact_button': 'Get in Touch', 'footer_rights': 'All rights reserved.',
+                    'company_name': '<strong>Company Name:</strong> ABEIL COELHO JUNIOR LTDA', 
+                    'trade_name': '<strong>Trade Name:</strong> AURORA SCRAPE', 
+                    'address_street': 'R PAIS LEME, 215, Conj 1713', 
+                    'address_city_state': 'PINHEIROS, SAO PAULO - SP', 
+                    'address_cep': 'ZIP: 05.424-150', 
+                    'cnpj': '<strong>CNPJ:</strong> 61.800.590/0001-21' 
                 }
             };
 
@@ -334,7 +600,11 @@
             const langEnBtn = document.getElementById('lang-en');
             const heroSection = document.getElementById('hero');
             const contactLink = document.getElementById('contact-link');
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
 
+            // --- Set current year in footer ---
+            document.getElementById('current-year').textContent = new Date().getFullYear();
             
             const day = new Date().getDay();
 
@@ -365,6 +635,23 @@
             langPtBtn.addEventListener('click', () => setLanguage('pt'));
             langEnBtn.addEventListener('click', () => setLanguage('en'));
 
+            // --- Hamburger menu toggle ---
+            hamburgerMenu.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburgerMenu.classList.toggle('active');
+            });
+
+            // Close menu when a navigation link is clicked (for mobile)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        hamburgerMenu.classList.remove('active');
+                    }
+                });
+            });
+
+
             const userLang = navigator.language || navigator.userLanguage;
             setLanguage(userLang.startsWith('pt') ? 'pt' : 'en');
 
@@ -379,42 +666,7 @@
             }, appearOptions);
             faders.forEach(fader => appearOnScroll.observe(fader));
         });
-        
-        // Full data objects (omitted from inner script block for brevity)
-        const weekdayGreetings = {
-                'pt': [
-                    "Uma ótima Domingo para planejar a semana!",
-                    "Uma Segunda-feira produtiva para você!",
-                    "Tenha uma Terça-feira cheia de insights!",
-                    "Quarta-feira é dia de inovar. Vamos lá!",
-                    "Uma Quinta-feira de grandes avanços!",
-                    "Sextou! Hora de colher os dados da semana!",
-                    "Um Sábado tranquilo para analisar e crescer!"
-                ],
-                'en': [
-                    "A great Sunday to plan the week!",
-                    "Have a productive Monday!",
-                    "Wishing you a Tuesday full of insights!",
-                    "Wednesday is innovation day. Let's go!",
-                    "A Thursday of great progress!",
-                    "It's Friday! Time to harvest the week's data!",
-                    "A peaceful Saturday to analyze and grow!"
-                ]
-            };
-            const weekdayImages = [
-                './sources/background/photo-1506318137071-a8e063b4bec0.avif', // Sunday (Calm, expansive)
-                './sources/background/photo-1534723328310-e82dad3ee43f.avif', // Monday (Focused, tech)
-                './sources/background/photo-1526374965328-7f61d4dc18c5.avif', // Tuesday (Data, matrix)
-                './sources/background/photo-1531366936337-7c912a4589a7.avif', // Wednesday (Classic Aurora)
-                './sources/background/photo-1561821636-54d40db2a9ce.avif', // Thursday (Flowing light)
-                './sources/background/photo-1507697364665-69eec30ea71e.avif', // Friday (Vibrant, accomplishment)
-                './sources/background/photo-1464802686167-b939a6910659.avif'  // Saturday (Expansive, space)
-            ];
-
     </script>
 </body>
 
 </html>
-
-
-
